@@ -15,9 +15,9 @@ const DeckForm = ({ header, initialFormData, submitHandler }) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        submitHandler(formData);
+        submitHandler(formData.id, formData);
         setFormData({ ...initialFormData });
-        history.push("/");
+        history.push(`decks/`);
     };
 
     return (
@@ -48,7 +48,10 @@ const DeckForm = ({ header, initialFormData, submitHandler }) => {
                     onChange={handleInput}
                 />
             </div>
-            <Link to="/" className="btn btn-secondary">
+            <Link
+                to={header === "Edit Deck" ? `/decks/${formData.id}` : "/"}
+                className="btn btn-secondary"
+            >
                 Cancel
             </Link>
             <button type="submit" className="btn btn-primary mx-2">
