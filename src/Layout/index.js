@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "./Home";
-import { deleteDeck, listDecks } from "../utils/api";
+import { createDeck, deleteDeck, listDecks } from "../utils/api";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import { Route } from "react-router-dom/cjs/react-router-dom";
 import DeckCreate from "./DeckCreate";
@@ -13,8 +13,13 @@ function Layout() {
     const [decks, setDecks] = useState([]);
 
     useEffect(() => {
+        if (decks.length) return;
         listDecks().then((data) => setDecks(data));
-    }, []);
+    }, [decks]);
+
+    const submitDeckHandler = (e) => {
+        createDeck(e).then((data) => setDecks(data));
+    };
 
     const deleteBtn = (cardId) => {
         console.log(cardId);
@@ -36,12 +41,16 @@ function Layout() {
                         >
                             Create Deck
                         </Link>
-                        {decks.length ? (
+                        {decks?.length ? (
                             <Home decks={decks} deleteBtn={deleteBtn} />
-                        ) : null}
+                        ) : (
+                            <h2 className="mt-3 text-dark">
+                                No decks have been created
+                            </h2>
+                        )}
                     </Route>
                     <Route path="/decks/new">
-                        <DeckCreate />
+                        <DeckCreate submitHandler={submitDeckHandler} />
                     </Route>
                     <Route path="/decks/:deckId/study">
                         <Study />

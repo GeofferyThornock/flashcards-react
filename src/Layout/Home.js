@@ -4,7 +4,7 @@ const Home = ({ decks, deleteBtn }) => {
     const deckList = decks.map((e) => (
         <Card flashcard={e} deleteBtn={deleteBtn} key={e.id} />
     ));
-    return <div>{deckList};</div>;
+    return <div>{decks && deckList}</div>;
 };
 
 export default Home;
