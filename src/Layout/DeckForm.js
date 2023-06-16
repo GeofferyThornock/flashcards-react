@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const DeckForm = ({ header, initialFormData, submitHandler }) => {
     const [formData, setFormData] = useState(initialFormData);
-    const history = useHistory();
 
     const handleInput = (event) => {
         setFormData({
@@ -14,10 +13,8 @@ const DeckForm = ({ header, initialFormData, submitHandler }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-
-        submitHandler(formData.id, formData);
+        submitHandler(formData);
         setFormData({ ...initialFormData });
-        history.push(`decks/`);
     };
 
     return (

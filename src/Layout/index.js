@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "./Home";
-import { createDeck, deleteDeck, listDecks, updateDeck } from "../utils/api";
+import {
+    createCard,
+    createDeck,
+    deleteDeck,
+    listDecks,
+    updateDeck,
+} from "../utils/api";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import { Route } from "react-router-dom/cjs/react-router-dom";
 import DeckCreate from "./DeckCreate";
@@ -10,6 +16,7 @@ import { Link, useHistory } from "react-router-dom";
 import Study from "./Study";
 import Deck from "./Deck";
 import DeckEdit from "./DeckEdit";
+import CreateCard from "./CreateCard";
 
 function Layout() {
     const [decks, setDecks] = useState([]);
@@ -20,12 +27,19 @@ function Layout() {
         listDecks().then((data) => setDecks(data));
     }, [decks]);
 
-    const submitDeckHandler = (id, data) => {
-        createDeck(data).then((data) => setDecks(data));
+    const submitDeckHandler = (data) => {
+        createDeck(data).then((data) => {
+            setDecks(data);
+            history.push(`/decks/${data.id}`);
+        });
     };
 
     const updateDeckHandler = (id, data) => {
         updateDeck(data).then((data) => setDecks(data));
+    };
+
+    const submitCardHandler = (id, data) => {
+        createCard(id, data);
     };
 
     const deleteBtn = (cardId) => {
@@ -68,6 +82,9 @@ function Layout() {
                     </Route>
                     <Route path="/decks/:deckId/edit">
                         <DeckEdit submitHandler={updateDeckHandler} />
+                    </Route>
+                    <Route path="/decks/:deckId/cards/new">
+                        <CreateCard submitHandler={submitCardHandler} />
                     </Route>
                     <Route>
                         <NotFound />
