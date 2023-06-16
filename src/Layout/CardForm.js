@@ -10,7 +10,9 @@ const CardForm = ({ header, initialFormData, submitHandler }) => {
     const history = useHistory();
 
     useEffect(() => {
-        readDeck(deckId).then((data) => setDeck(data));
+        readDeck(deckId).then((data) => {
+            setDeck(data);
+        });
     }, [deckId]);
 
     const handleInput = (event) => {
@@ -23,25 +25,14 @@ const CardForm = ({ header, initialFormData, submitHandler }) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
+        console.log(formData);
+
         submitHandler(deckId, formData);
         setFormData({ ...initialFormData });
-        history.push(`/decks/${deck?.id}`);
     };
 
     return (
         <div>
-            <nav className="breadcrumb">
-                <Link className="breadcrumb-item" to="/">
-                    Home
-                </Link>
-                <Link className="breadcrumb-item" to={`/decks/${deck?.id}`}>
-                    {deck?.name}
-                </Link>
-                <span className="breadcrumb-item active" aria-current="page">
-                    {header}
-                </span>
-            </nav>
-
             <h3>
                 {deck?.name}: {header}
             </h3>

@@ -1,130 +1,53 @@
 {
-  "decks": [
-    {
-      "id": 1,
-      "name": "Rendering in React",
-      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
-    },
-    {
-      "name": "idiidiid",
-      "description": "ididiid",
-      "id": 2
-    },
-    {
-      "name": "adfasf",
-      "description": "asfasf",
-      "id": 3
-    },
-    {
-      "name": "dfsdfsdf",
-      "description": "sdfsdf",
-      "id": 4
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 5
-    },
-    {
-      "name": "kdkdkkdkk",
-      "description": "kkdkkd",
-      "id": 6
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 7
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 8
-    },
-    {
-      "name": "asdasd",
-      "description": "asdasdasdasdadas",
-      "id": 9
-    },
-    {
-      "name": "",
-      "description": "",
-      "id": 10
-    },
-    {
-      "name": "hello",
-      "description": "world",
-      "id": 11
-    },
-    {
-      "name": "Hello",
-      "description": "World",
-      "id": 12
-    },
-    {
-      "name": "Hello",
-      "description": "Rowlosls\n",
-      "id": 13
-    },
-    {
-      "name": "Hello",
-      "description": "Hello hello",
-      "id": 14
-    }
-  ],
-  "cards": [
-    {
-      "front": "hello",
-      "back": "World",
-      "deckId": null,
-      "id": 8
-    },
-    {
-      "front": "hello",
-      "back": "wolrd\n",
-      "deckId": null,
-      "id": 9
-    },
-    {
-      "front": "asdasd",
-      "back": "asdasd",
-      "deckId": null,
-      "id": 10
-    },
-    {
-      "front": "sdfsdfsdf",
-      "back": "sdfsdfsdfs",
-      "deckId": null,
-      "id": 11
-    },
-    {
-      "front": "sdfsdfsdf",
-      "back": "sdfsdfsdf",
-      "deckId": null,
-      "id": 12
-    },
-    {
-      "front": "kdkkdkkdk",
-      "back": "kdkkdkkd",
-      "deckId": 1,
-      "id": 13
-    },
-    {
-      "front": "Hello",
-      "back": "WOrld",
-      "deckId": 13,
-      "id": 14
-    },
-    {
-      "front": "This is a card",
-      "back": "This is another card my friend",
-      "deckId": 13,
-      "id": 15
-    },
-    {
-      "front": "This is sick",
-      "back": "Brooooooooooooooooo",
-      "deckId": 14,
-      "id": 16
-    }
-  ]
+    "decks": [
+        {
+            "id": 1,
+            "name": "Rendering in React",
+            "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+        },
+        {
+            "name": "React Router",
+            "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+            "id": 2
+        }
+    ],
+    "cards": [
+        {
+            "id": 1,
+            "front": "Differentiate between Real DOM and Virtual DOM.",
+            "back": "Virtual DOM updates are faster but do not directly update the HTML",
+            "deckId": 1
+        },
+        {
+            "id": 2,
+            "front": "How do you modify the state of a different React component?",
+            "back": "Not at all! State is visible to the component only.",
+            "deckId": 1
+        },
+        {
+            "id": 3,
+            "front": "How do you pass data 'down' to a React child component?",
+            "back": "As properties or props",
+            "deckId": 1
+        },
+        {
+            "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
+            "back": "All paths. A route with no path matches all URL's",
+            "deckId": 2,
+            "id": 4
+        },
+        {
+            "front": "What does <Switch> do?",
+            "back": "Renders the first matching child <Route> ",
+            "deckId": 2,
+            "id": 5
+        },
+        {
+            "cards": [],
+            "front": "b",
+            "back": "b",
+            "deckId": 1,
+            "id": 7
+        }
+    ]
 }

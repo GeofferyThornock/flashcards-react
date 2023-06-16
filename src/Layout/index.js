@@ -3,11 +3,11 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "./Home";
 import {
-    createCard,
     createDeck,
-    deleteDeck,
     listDecks,
     updateDeck,
+    deleteDeck,
+    createCard,
 } from "../utils/api";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import { Route } from "react-router-dom/cjs/react-router-dom";
@@ -17,38 +17,61 @@ import Study from "./Study";
 import Deck from "./Deck";
 import DeckEdit from "./DeckEdit";
 import CreateCard from "./CreateCard";
+import EditCard from "./EditCard";
 
 function Layout() {
     const [decks, setDecks] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
-        if (decks.length) return;
         listDecks().then((data) => setDecks(data));
-    }, [decks]);
+    }, []);
 
     const submitDeckHandler = (data) => {
         createDeck(data).then((data) => {
-            setDecks(data);
+            listDecks().then((data) => setDecks(data));
             history.push(`/decks/${data.id}`);
         });
     };
 
-    const updateDeckHandler = (id, data) => {
-        updateDeck(data).then((data) => setDecks(data));
+    const updateDeckHandler = (data) => {
+        updateDeck(data).then((data) => {
+            listDecks().then((data) => setDecks(data));
+            history.push(`/decks/${data.id}`);
+        });
     };
 
     const submitCardHandler = (id, data) => {
-        createCard(id, data);
+        createCard(id, data).then((data) => {
+            listDecks().then((data) => setDecks(data));
+            history.push(`/decks/${data.deckId}`);
+        });
     };
 
-    const deleteBtn = (cardId) => {
-        console.log(cardId);
+    const deleteDeckHandler = (id) => {
+        console.log(id, "Card Component DeleteBtn");
+
         if (window.confirm("Do you really want to delete this deck?")) {
-            deleteDeck(cardId).then((data) => setDecks(data));
-            history.push("/");
+            deleteDeck(id).then(() => {
+                listDecks().then((data) => setDecks(data));
+                history.push(`/`);
+            });
         }
     };
+
+    // const deleteCardHandler = (id, deckId) => {
+    //     console.log(id, "Card Component deleteCardById");
+    //     if (
+    //         window.confirm(
+    //             "Are you sure you want to delete this card? \n \n You will not be able to recover it."
+    //         )
+    //     ) {
+    //         deleteCard(id).then(() => {
+    //             listDecks().then((data) => setDecks(data));
+    //             history.push(`/decks/${deckId}`);
+    //         });
+    //     }
+    // };
 
     return (
         <>
@@ -64,7 +87,10 @@ function Layout() {
                             Create Deck
                         </Link>
                         {decks?.length ? (
-                            <Home decks={decks} deleteBtn={deleteBtn} />
+                            <Home
+                                decks={decks}
+                                deleteDeckHandler={deleteDeckHandler}
+                            />
                         ) : (
                             <h2 className="mt-3 text-dark">
                                 No decks have been created
@@ -75,7 +101,7 @@ function Layout() {
                         <DeckCreate submitHandler={submitDeckHandler} />
                     </Route>
                     <Route path="/decks/:deckId" exact>
-                        <Deck deleteBtn={deleteBtn} />
+                        <Deck deleteDeckHandler={deleteDeckHandler} />
                     </Route>
                     <Route path="/decks/:deckId/study">
                         <Study />
@@ -83,9 +109,13 @@ function Layout() {
                     <Route path="/decks/:deckId/edit">
                         <DeckEdit submitHandler={updateDeckHandler} />
                     </Route>
+                    <Route path="/decks/:deckId/cards/:cardId/edit">
+                        <EditCard />
+                    </Route>
                     <Route path="/decks/:deckId/cards/new">
                         <CreateCard submitHandler={submitCardHandler} />
                     </Route>
+
                     <Route>
                         <NotFound />
                     </Route>

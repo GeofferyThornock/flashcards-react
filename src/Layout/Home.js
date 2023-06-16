@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "./Card";
-const Home = ({ decks, deleteBtn }) => {
+const Home = ({ decks, deleteDeckHandler }) => {
     const deckList = decks.map((e) => (
-        <Card flashcard={e} deleteBtn={deleteBtn} key={e.id} />
+        <Card flashcard={e} deleteDeckHandler={deleteDeckHandler} key={e.id} />
     ));
     return <div>{decks && deckList}</div>;
 };

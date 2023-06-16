@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-export default function Card({ flashcard, deleteBtn }) {
+export default function Card({ flashcard, deleteDeckHandler }) {
     const { id, name, description } = flashcard;
 
     return (
         <div className="card mb-3">
             <div className="card-body">
-                <h4 className="card-title text-muted">{name}</h4>
+                <h4 className="card-title text-muted">
+                    {name}{" "}
+                    <span className="h6 float-right">
+                        {flashcard.cards.length} cards
+                    </span>
+                </h4>
                 <p className="card-text text-muted">{description}</p>
                 <Link to={`/decks/${id}`} className="btn btn-secondary">
                     View
@@ -19,7 +23,7 @@ export default function Card({ flashcard, deleteBtn }) {
                     Study
                 </Link>
                 <button
-                    onClick={() => deleteBtn(id)}
+                    onClick={() => deleteDeckHandler(id)}
                     className="btn btn-danger"
                 >
                     Delete

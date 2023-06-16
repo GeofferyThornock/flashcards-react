@@ -39,10 +39,6 @@ export default function DeckEdit({ submitHandler }) {
                 }}
                 submitHandler={submitHandler}
             />
-            {console.log({
-                name: deck?.name,
-                description: deck?.description,
-            })}
         </div>
     );
 }
