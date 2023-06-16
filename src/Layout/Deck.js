@@ -56,33 +56,36 @@ export default function Deck({ deleteDeckHandler }) {
                     Delete
                 </button>
             </div>
-            <div className="mt-5">
-                <h3>Cards</h3>
-                {deck.cards?.map((e) => (
-                    <div className="mt-4 border rounded-lg p-4" key={e.id}>
-                        <h4>Front: </h4>
-                        <p>
-                            <span className="mx-4">{e.front}</span>
-                        </p>
-                        <h4>Back: </h4>
-                        <p>
-                            <span className="mx-4">{e.back}</span>
-                        </p>
-                        <Link
-                            to={`${url}/cards/${e.id}/edit`}
-                            className="btn btn-secondary"
-                        >
-                            Edit
-                        </Link>
-                        <button
-                            onClick={() => deleteCardById(e.id, e.deckId)}
-                            className="btn btn-danger mx-2"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                ))}
-            </div>
+
+            {deck.cards && (
+                <div className="mt-5">
+                    <h3>Cards</h3>
+                    {deck.cards.map((e) => (
+                        <div className="mt-4 border rounded-lg p-4" key={e.id}>
+                            <h4>Front: </h4>
+                            <p>
+                                <span className="mx-4">{e.front}</span>
+                            </p>
+                            <h4>Back: </h4>
+                            <p>
+                                <span className="mx-4">{e.back}</span>
+                            </p>
+                            <Link
+                                to={`${url}/cards/${e.id}/edit`}
+                                className="btn btn-secondary"
+                            >
+                                Edit
+                            </Link>
+                            <button
+                                onClick={() => deleteCardById(e.id, e.deckId)}
+                                className="btn btn-danger mx-2"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

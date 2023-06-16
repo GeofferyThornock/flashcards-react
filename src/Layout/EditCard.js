@@ -19,7 +19,7 @@ export default function EditCard() {
 
     const submitHandler = (id, formData) => {
         updateCard(formData).then((data) => {
-            history.push(`/decks/${deck?.id}`);
+            history.push(`/decks/${deck.id}`);
         });
     };
 

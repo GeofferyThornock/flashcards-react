@@ -44,51 +44,54 @@ function Study() {
                 <li className="breadcrumb-item active">Study</li>
             </ol>
             <h1>Study: {deckArr.name}</h1>
-            <div className="card">
-                {deckArr.cards?.length >= 2 ? (
-                    <div className="card-body">
-                        {deckArr.cards?.length ? (
-                            <h4 className="card-title text-body">
-                                Card {count + 1} of {deckArr.cards.length}
-                            </h4>
-                        ) : (
-                            <h4>Not enough cards</h4>
-                        )}
-                        {deckArr.cards && (
-                            <p className="card-text">
-                                {flipped
-                                    ? deckArr.cards[count].back
-                                    : deckArr.cards[count].front}
-                            </p>
-                        )}
-                        <button
-                            className="btn btn-secondary"
-                            onClick={() => setFlipped(!flipped)}
-                        >
-                            Flip
-                        </button>
-                        {flipped && (
+
+            {deckArr.cards && (
+                <div className="card">
+                    {deckArr.cards.length >= 2 ? (
+                        <div className="card-body">
+                            {deckArr.cards.length ? (
+                                <h4 className="card-title text-body">
+                                    Card {count + 1} of {deckArr.cards.length}
+                                </h4>
+                            ) : (
+                                <h4>Not enough cards</h4>
+                            )}
+                            {deckArr.cards && (
+                                <p className="card-text">
+                                    {flipped
+                                        ? deckArr.cards[count].back
+                                        : deckArr.cards[count].front}
+                                </p>
+                            )}
                             <button
-                                className="btn btn-primary"
-                                onClick={() => handleNext()}
+                                className="btn btn-secondary"
+                                onClick={() => setFlipped(!flipped)}
                             >
-                                Next
+                                Flip
                             </button>
-                        )}
-                    </div>
-                ) : (
-                    <div className="card-body">
-                        <h3>Not enough cards.</h3>
-                        <p>
-                            You need at least 3 cards to study. There are{" "}
-                            {deckArr.cards?.length} cards in this deck
-                        </p>
-                        <Link to="cards/new" className="btn btn-primary">
-                            Add Cards
-                        </Link>
-                    </div>
-                )}
-            </div>
+                            {flipped && (
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => handleNext()}
+                                >
+                                    Next
+                                </button>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="card-body">
+                            <h3>Not enough cards.</h3>
+                            <p>
+                                You need at least 3 cards to study. There are{" "}
+                                {deckArr.cards.length} cards in this deck
+                            </p>
+                            <Link to="cards/new" className="btn btn-primary">
+                                Add Cards
+                            </Link>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

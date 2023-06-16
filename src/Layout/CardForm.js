@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { readDeck } from "../utils/api";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const CardForm = ({ header, initialFormData, submitHandler }) => {
     const [formData, setFormData] = useState(initialFormData);
     const [deck, setDeck] = useState({});
     const { deckId } = useParams();
-    const history = useHistory();
 
     useEffect(() => {
         readDeck(deckId).then((data) => {
@@ -34,7 +33,7 @@ const CardForm = ({ header, initialFormData, submitHandler }) => {
     return (
         <div>
             <h3>
-                {deck?.name}: {header}
+                {deck.name}: {header}
             </h3>
 
             <form className="mb-3" onSubmit={handleFormSubmit}>
@@ -62,7 +61,7 @@ const CardForm = ({ header, initialFormData, submitHandler }) => {
                 />
                 <div className="mt-3">
                     <Link
-                        to={`/decks/${deck?.id}`}
+                        to={`/decks/${deck.id}`}
                         className="btn btn-secondary"
                     >
                         Done

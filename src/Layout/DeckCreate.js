@@ -7,11 +7,11 @@ function DeckCreate({ submitHandler }) {
 
     return (
         <div>
-            <nav class="breadcrumb">
-                <Link class="breadcrumb-item" to="/">
+            <nav className="breadcrumb">
+                <Link className="breadcrumb-item" to="/">
                     Home
                 </Link>
-                <span class="breadcrumb-item active" aria-current="page">
+                <span className="breadcrumb-item active" aria-current="page">
                     Create Deck
                 </span>
             </nav>

@@ -74,54 +74,49 @@ function Layout() {
     // };
 
     return (
-        <>
+        <div className="container">
             <Header />
-            <div className="container">
-                {/* TODO: Implement the screen starting here */}
-                <Switch>
-                    <Route path="/" exact>
-                        <Link
-                            to="/decks/new"
-                            className="btn btn-secondary mb-2"
-                        >
-                            Create Deck
-                        </Link>
-                        {decks?.length ? (
-                            <Home
-                                decks={decks}
-                                deleteDeckHandler={deleteDeckHandler}
-                            />
-                        ) : (
-                            <h2 className="mt-3 text-dark">
-                                No decks have been created
-                            </h2>
-                        )}
-                    </Route>
-                    <Route path="/decks/new">
-                        <DeckCreate submitHandler={submitDeckHandler} />
-                    </Route>
-                    <Route path="/decks/:deckId" exact>
-                        <Deck deleteDeckHandler={deleteDeckHandler} />
-                    </Route>
-                    <Route path="/decks/:deckId/study">
-                        <Study />
-                    </Route>
-                    <Route path="/decks/:deckId/edit">
-                        <DeckEdit submitHandler={updateDeckHandler} />
-                    </Route>
-                    <Route path="/decks/:deckId/cards/:cardId/edit">
-                        <EditCard />
-                    </Route>
-                    <Route path="/decks/:deckId/cards/new">
-                        <CreateCard submitHandler={submitCardHandler} />
-                    </Route>
+            {/* TODO: Implement the screen starting here */}
+            <Switch>
+                <Route path="/" exact>
+                    <Link to="/decks/new" className="btn btn-secondary mb-2">
+                        Create Deck
+                    </Link>
+                    {decks.length ? (
+                        <Home
+                            decks={decks}
+                            deleteDeckHandler={deleteDeckHandler}
+                        />
+                    ) : (
+                        <h2 className="mt-3 text-dark">
+                            No decks have been created
+                        </h2>
+                    )}
+                </Route>
+                <Route path="/decks/new">
+                    <DeckCreate submitHandler={submitDeckHandler} />
+                </Route>
+                <Route path="/decks/:deckId" exact>
+                    <Deck deleteDeckHandler={deleteDeckHandler} />
+                </Route>
+                <Route path="/decks/:deckId/study">
+                    <Study />
+                </Route>
+                <Route path="/decks/:deckId/edit">
+                    <DeckEdit submitHandler={updateDeckHandler} />
+                </Route>
+                <Route path="/decks/:deckId/cards/:cardId/edit">
+                    <EditCard />
+                </Route>
+                <Route path="/decks/:deckId/cards/new">
+                    <CreateCard submitHandler={submitCardHandler} />
+                </Route>
 
-                    <Route>
-                        <NotFound />
-                    </Route>
-                </Switch>
-            </div>
-        </>
+                <Route>
+                    <NotFound />
+                </Route>
+            </Switch>
+        </div>
     );
 }
 
